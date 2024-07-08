@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import AppKit
+import CoreGraphics
 
 struct ContentView: View {
     private let options = [
@@ -71,6 +73,64 @@ struct ContentView: View {
         }
     }
     
+    private func moveMouseRandomly() {
+        let screenWidth = NSScreen.main?.frame.width ?? 1920
+        let screenHeight = NSScreen.main?.frame.height ?? 1080
+        
+        let randomX = CGFloat(arc4random_uniform(UInt32(screenWidth)))
+        let randomY = CGFloat(arc4random_uniform(UInt32(screenHeight)))
+        
+        let destination = CGPoint(x: randomX, y: randomY)
+        
+        let event = CGEvent(mouseEventSource: nil, mouseType: .mouseMoved, mouseCursorPosition: destination, mouseButton: .left)
+        event?.post(tap: .cghidEventTap)
+    }
+    
+    private func getCurrentMouseLocation() -> CGPoint {
+        if let screen = NSScreen.main {
+            let mouseLocation = NSEvent.mouseLocation
+            let screenHeight = screen.frame.height
+            let flippedY = screenHeight - mouseLocation.y
+            return CGPoint(x: mouseLocation.x, y: flippedY)
+        }
+        return .zero
+    }
+    
+    private func leftClick() {
+        let currentLocation = getCurrentMouseLocation()
+        print("currentLocation:", currentLocation)
+
+        let mouseDown = CGEvent(mouseEventSource: nil, mouseType: .leftMouseDown, mouseCursorPosition: currentLocation, mouseButton: .left)
+        let mouseUp = CGEvent(mouseEventSource: nil, mouseType: .leftMouseUp, mouseCursorPosition: currentLocation, mouseButton: .left)
+
+        mouseDown?.post(tap: .cghidEventTap)
+        mouseUp?.post(tap: .cghidEventTap)
+    }
+
+    private func rightClick() {
+        let currentLocation = getCurrentMouseLocation()
+        print("currentLocation:", currentLocation)
+
+        let mouseDown = CGEvent(mouseEventSource: nil, mouseType: .rightMouseDown, mouseCursorPosition: currentLocation, mouseButton: .right)
+        let mouseUp = CGEvent(mouseEventSource: nil, mouseType: .rightMouseUp, mouseCursorPosition: currentLocation, mouseButton: .right)
+
+        mouseDown?.post(tap: .cghidEventTap)
+        mouseUp?.post(tap: .cghidEventTap)
+    }
+    
+    private func pressRandomKey() {
+        let keys = Array("abcdefghijklmnopqrstuvwxyz1234567890")
+        if let randomKey = keys.randomElement() {
+            let keyCode = CGKeyCode(randomKey.asciiValue!)
+            let keyDown = CGEvent(keyboardEventSource: nil, virtualKey: keyCode, keyDown: true)
+            let keyUp = CGEvent(keyboardEventSource: nil, virtualKey: keyCode, keyDown: false)
+            
+            keyDown?.post(tap: .cghidEventTap)
+            keyUp?.post(tap: .cghidEventTap)
+        }
+    }
+    
+    
     private func performAction() {
         let activeActions = states.keys.filter { states[$0] == true }
         if activeActions.isEmpty {
@@ -78,6 +138,18 @@ struct ContentView: View {
         } else {
             if let randomAction = activeActions.randomElement() {
                 print("Random active action: \(randomAction)")
+                switch randomAction {
+                case "Mouse movements":
+                    moveMouseRandomly()
+                case "Left clicks":
+                    leftClick()
+                case "Right clicks":
+                    rightClick()
+                case "Keyboard actions":
+                    pressRandomKey()
+                default:
+                    break
+                }
             }
         }
     }
