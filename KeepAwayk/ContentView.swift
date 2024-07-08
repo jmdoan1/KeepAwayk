@@ -8,27 +8,30 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var mouseMovements = false
-    @State private var leftClicks = false
-    @State private var rightClicks = false
-    @State private var keyboardButtons = false
+    private let options = [
+        "Mouse movements",
+        "Left clicks",
+        "Right clicks",
+        "Keyboard actions"
+    ];
+    @State private var states: [String: Bool]
+    
+    init() {
+        _states = State(initialValue: Dictionary(uniqueKeysWithValues: options.map { ($0, true) }))
+    }
+    
     @State private var isRunning = false
     @State private var interval: Double = 5.0
-    @State private var timer: Timer?
     
     var body: some View {
         VStack {
-            Toggle("Mouse Movements", isOn: $mouseMovements)
+            ForEach(options, id: \.self) { key in
+                Toggle(key, isOn: Binding<Bool>(
+                    get: { states[key] ?? false },
+                    set: { states[key] = $0 }
+                ))
                 .toggleStyle(CheckboxToggleStyle())
-            
-            Toggle("Left Clicks", isOn: $leftClicks)
-                .toggleStyle(CheckboxToggleStyle())
-            
-            Toggle("Right Clicks", isOn: $rightClicks)
-                .toggleStyle(CheckboxToggleStyle())
-            
-            Toggle("Keyboard Buttons", isOn: $keyboardButtons)
-                .toggleStyle(CheckboxToggleStyle())
+            }
             
             HStack {
                 Text("Do something every")
@@ -45,12 +48,13 @@ struct ContentView: View {
                     startActions()
                 }
             }) {
-                Text(isRunning ? "Stop" : "Start")
+                Text(isRunning ? "Stop (⌘ + Y)" : "Start (⌘ + Y)")
                     .font(.title)
                     .padding()
                     .foregroundColor(.white)
-                    
-            }.background(isRunning ? Color.red : Color.green).cornerRadius(10)
+            }
+            .background(isRunning ? Color.red : Color.green).cornerRadius(10)
+            .keyboardShortcut("y", modifiers: .command)
         }
         .padding()
     }
@@ -58,7 +62,7 @@ struct ContentView: View {
     private func startActions() {
         performAction()
         
-        timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { timer in
+        Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { timer in
             if !isRunning {
                 timer.invalidate()
                 return
@@ -68,8 +72,14 @@ struct ContentView: View {
     }
     
     private func performAction() {
-        print("Action performed at \(Date())")
-        // Add your action logic here
+        let activeActions = states.keys.filter { states[$0] == true }
+        if activeActions.isEmpty {
+            print("No active actions")
+        } else {
+            if let randomAction = activeActions.randomElement() {
+                print("Random active action: \(randomAction)")
+            }
+        }
     }
 }
 
