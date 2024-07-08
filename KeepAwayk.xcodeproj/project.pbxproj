@@ -45,6 +45,7 @@
 		C170E33A2C3B323500127664 /* KeepAwaykUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KeepAwaykUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C170E33E2C3B323500127664 /* KeepAwaykUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeepAwaykUITests.swift; sourceTree = "<group>"; };
 		C170E3402C3B323500127664 /* KeepAwaykUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeepAwaykUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C1B8B92B2C3B618F001F947A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +96,7 @@
 		C170E3212C3B323400127664 /* KeepAwayk */ = {
 			isa = PBXGroup;
 			children = (
+				C1B8B92B2C3B618F001F947A /* Info.plist */,
 				C170E3222C3B323400127664 /* KeepAwaykApp.swift */,
 				C170E3242C3B323400127664 /* ContentView.swift */,
 				C170E3262C3B323500127664 /* Assets.xcassets */,
@@ -429,11 +431,14 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = KeepAwayk/Info.plist;
+				INFOPLIST_KEY_NSAppleEventsUsageDescription = "We need access to control the mouse for the app's functionality.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.doanworks.KeepAwayk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -456,11 +461,14 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = KeepAwayk/Info.plist;
+				INFOPLIST_KEY_NSAppleEventsUsageDescription = "We need access to control the mouse for the app's functionality.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.doanworks.KeepAwayk;
 				PRODUCT_NAME = "$(TARGET_NAME)";

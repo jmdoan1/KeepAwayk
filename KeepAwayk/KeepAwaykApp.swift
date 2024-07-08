@@ -11,7 +11,7 @@ import SwiftUI
 struct KeepAwaykApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().frame(width: 400, height: 400)
         }
     }
 }
