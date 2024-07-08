@@ -14,6 +14,8 @@
 		C170E3352C3B323500127664 /* KeepAwaykTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C170E3342C3B323500127664 /* KeepAwaykTests.swift */; };
 		C170E33F2C3B323500127664 /* KeepAwaykUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C170E33E2C3B323500127664 /* KeepAwaykUITests.swift */; };
 		C170E3412C3B323500127664 /* KeepAwaykUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C170E3402C3B323500127664 /* KeepAwaykUITestsLaunchTests.swift */; };
+		C1B8B92D2C3B7F04001F947A /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B8B92C2C3B7F04001F947A /* EventMonitor.swift */; };
+		C1B8B92F2C3B8126001F947A /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B8B92E2C3B8126001F947A /* ContentViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,8 @@
 		C170E33E2C3B323500127664 /* KeepAwaykUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeepAwaykUITests.swift; sourceTree = "<group>"; };
 		C170E3402C3B323500127664 /* KeepAwaykUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeepAwaykUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C1B8B92B2C3B618F001F947A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C1B8B92C2C3B7F04001F947A /* EventMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
+		C1B8B92E2C3B8126001F947A /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +106,8 @@
 				C170E3262C3B323500127664 /* Assets.xcassets */,
 				C170E32B2C3B323500127664 /* KeepAwayk.entitlements */,
 				C170E3282C3B323500127664 /* Preview Content */,
+				C1B8B92C2C3B7F04001F947A /* EventMonitor.swift */,
+				C1B8B92E2C3B8126001F947A /* ContentViewModel.swift */,
 			);
 			path = KeepAwayk;
 			sourceTree = "<group>";
@@ -261,6 +267,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1B8B92F2C3B8126001F947A /* ContentViewModel.swift in Sources */,
+				C1B8B92D2C3B7F04001F947A /* EventMonitor.swift in Sources */,
 				C170E3252C3B323400127664 /* ContentView.swift in Sources */,
 				C170E3232C3B323400127664 /* KeepAwaykApp.swift in Sources */,
 			);
