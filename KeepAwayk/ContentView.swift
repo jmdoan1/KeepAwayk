@@ -21,12 +21,8 @@ struct ContentView: View {
             }
             
             HStack {
-                Text("Do something every")
-                TextField("", value: $viewModel.interval, format: .number)
-                    .frame(width: 50)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
-                Stepper("seconds", value: $viewModel.interval)
+                Stepper("Do something every \(viewModel.interval)", value: $viewModel.interval)
+                Text("seconds")
             }
             
             Button(action: {

@@ -18,7 +18,7 @@ class ContentViewModel: ObservableObject {
 
     @Published var states: [String: Bool]
     @Published var isRunning = false
-    @Published var interval: Double = 5.0
+    @Published var interval: Int = 5
     
     private var eventMonitor: EventMonitor?
     
@@ -51,7 +51,7 @@ class ContentViewModel: ObservableObject {
     private func startActions() {
         performAction()
         
-        Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { [weak self] timer in
+        Timer.scheduledTimer(withTimeInterval: Double(interval), repeats: true) { [weak self] timer in
             guard let self = self else {
                 timer.invalidate()
                 return
