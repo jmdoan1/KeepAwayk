@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-@main
+//@main
 struct KeepAwaykApp: App {
     var body: some Scene {
         WindowGroup {

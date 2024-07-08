@@ -15,7 +15,7 @@ class ContentViewModel: ObservableObject {
         "Right clicks",
         "Keyboard actions"
     ]
-
+    
     @Published var states: [String: Bool]
     @Published var isRunning = false
     @Published var interval: Int = 5
@@ -49,7 +49,7 @@ class ContentViewModel: ObservableObject {
     }
     
     private func startActions() {
-        performAction()
+        performAction(isFirst: true)
         
         Timer.scheduledTimer(withTimeInterval: Double(interval), repeats: true) { [weak self] timer in
             guard let self = self else {
@@ -80,15 +80,15 @@ class ContentViewModel: ObservableObject {
         let steps = 100
         let stepX = (destination.x - currentLocation.x) / CGFloat(steps)
         let stepY = (destination.y - currentLocation.y) / CGFloat(steps)
-
+        
         for step in 0...steps {
             let newX = currentLocation.x + stepX * CGFloat(step)
             let newY = currentLocation.y + stepY * CGFloat(step)
             let newPosition = CGPoint(x: newX, y: newY)
-
+            
             let event = CGEvent(mouseEventSource: nil, mouseType: .mouseMoved, mouseCursorPosition: newPosition, mouseButton: .left)
             event?.post(tap: .cghidEventTap)
-
+            
             usleep(10000) // Adjust the speed of movement by changing the sleep duration
         }
     }
@@ -106,21 +106,21 @@ class ContentViewModel: ObservableObject {
     private func leftClick() {
         let currentLocation = getCurrentMouseLocation()
         print("currentLocation:", currentLocation)
-
+        
         let mouseDown = CGEvent(mouseEventSource: nil, mouseType: .leftMouseDown, mouseCursorPosition: currentLocation, mouseButton: .left)
         let mouseUp = CGEvent(mouseEventSource: nil, mouseType: .leftMouseUp, mouseCursorPosition: currentLocation, mouseButton: .left)
-
+        
         mouseDown?.post(tap: .cghidEventTap)
         mouseUp?.post(tap: .cghidEventTap)
     }
-
+    
     private func rightClick() {
         let currentLocation = getCurrentMouseLocation()
         print("currentLocation:", currentLocation)
-
+        
         let mouseDown = CGEvent(mouseEventSource: nil, mouseType: .rightMouseDown, mouseCursorPosition: currentLocation, mouseButton: .right)
         let mouseUp = CGEvent(mouseEventSource: nil, mouseType: .rightMouseUp, mouseCursorPosition: currentLocation, mouseButton: .right)
-
+        
         mouseDown?.post(tap: .cghidEventTap)
         mouseUp?.post(tap: .cghidEventTap)
     }
@@ -144,14 +144,13 @@ class ContentViewModel: ObservableObject {
         }
     }
     
-    
-    private func performAction() {
-        let activeActions = states.keys.filter { states[$0] == true }
+    private func performAction(isFirst: Bool = false) {
+        let activeActions = states.keys.filter { states[$0] == true && !(isFirst && $0 == "Left clicks") }
+        
         if activeActions.isEmpty {
             print("No active actions")
         } else {
             if let randomAction = activeActions.randomElement() {
-                print("Random active action: \(randomAction)")
                 switch randomAction {
                 case "Mouse movements":
                     moveMouseRandomly()
