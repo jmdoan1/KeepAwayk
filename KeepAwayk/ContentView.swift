@@ -12,6 +12,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
+            Text("KeepAwayk").font(.largeTitle).fontWeight(.bold).padding()
             ForEach(viewModel.options, id: \.self) { key in
                 Toggle(key, isOn: Binding<Bool>(
                     get: { viewModel.states[key] ?? false },
@@ -24,6 +25,8 @@ struct ContentView: View {
                 Stepper("Do something every \(viewModel.interval)", value: $viewModel.interval)
                 Text("seconds")
             }
+            
+            Divider()
             
             Button(action: {
                 viewModel.toggleRunning()

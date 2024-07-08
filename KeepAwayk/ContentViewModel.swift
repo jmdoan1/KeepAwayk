@@ -45,6 +45,8 @@ class ContentViewModel: ObservableObject {
         isRunning.toggle()
         if isRunning {
             startActions()
+        } else {
+            AppDelegate.shared.showPopover(nil)
         }
     }
     
@@ -58,6 +60,7 @@ class ContentViewModel: ObservableObject {
             }
             if !self.isRunning {
                 timer.invalidate()
+                AppDelegate.shared.showPopover(nil)
                 return
             }
             self.performAction()
