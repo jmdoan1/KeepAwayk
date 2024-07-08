@@ -38,7 +38,7 @@ struct ContentView: View {
                     .padding()
                     .foregroundColor(.white)
             }
-            .background(viewModel.isRunning ? Color.red : Color.green.opacity(0.7)).cornerRadius(10)
+            .background(viewModel.isRunning ? Color.red : Color.blue).cornerRadius(10)
             .keyboardShortcut("y", modifiers: .command)
         }
         .padding()
