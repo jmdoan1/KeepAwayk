@@ -81,9 +81,25 @@ struct ContentView: View {
         let randomY = CGFloat(arc4random_uniform(UInt32(screenHeight)))
         
         let destination = CGPoint(x: randomX, y: randomY)
-        
-        let event = CGEvent(mouseEventSource: nil, mouseType: .mouseMoved, mouseCursorPosition: destination, mouseButton: .left)
-        event?.post(tap: .cghidEventTap)
+        moveMouseSmoothly(to: destination)
+    }
+    
+    private func moveMouseSmoothly(to destination: CGPoint) {
+        let currentLocation = getCurrentMouseLocation()
+        let steps = 100
+        let stepX = (destination.x - currentLocation.x) / CGFloat(steps)
+        let stepY = (destination.y - currentLocation.y) / CGFloat(steps)
+
+        for step in 0...steps {
+            let newX = currentLocation.x + stepX * CGFloat(step)
+            let newY = currentLocation.y + stepY * CGFloat(step)
+            let newPosition = CGPoint(x: newX, y: newY)
+
+            let event = CGEvent(mouseEventSource: nil, mouseType: .mouseMoved, mouseCursorPosition: newPosition, mouseButton: .left)
+            event?.post(tap: .cghidEventTap)
+
+            usleep(10000) // Adjust the speed of movement by changing the sleep duration
+        }
     }
     
     private func getCurrentMouseLocation() -> CGPoint {
