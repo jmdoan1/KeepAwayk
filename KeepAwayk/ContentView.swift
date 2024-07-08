@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject private var viewModel = ContentViewModel()
+    @State private var showPopup = false
     
     var body: some View {
         VStack {
@@ -18,7 +19,7 @@ struct ContentView: View {
                     get: { viewModel.states[key] ?? false },
                     set: { viewModel.states[key] = $0 }
                 ))
-                .toggleStyle(CheckboxToggleStyle())
+                .toggleStyle(CheckboxToggleStyle(viewModel: viewModel, showPopup: $showPopup))
             }
             
             HStack {
@@ -47,6 +48,9 @@ struct ContentView: View {
         .onDisappear {
             viewModel.stop()
         }
+        .sheet(isPresented: $showPopup) {
+            SubscriptionPopupView(isVisible: $showPopup)
+        }
     }
 }
 
@@ -57,6 +61,9 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 struct CheckboxToggleStyle: ToggleStyle {
+    @ObservedObject var viewModel: ContentViewModel
+    @Binding var showPopup: Bool
+    
     func makeBody(configuration: Configuration) -> some View {
         HStack {
             configuration.label
@@ -64,7 +71,13 @@ struct CheckboxToggleStyle: ToggleStyle {
             Image(systemName: configuration.isOn ? "checkmark.square" : "square")
                 .resizable()
                 .frame(width: 20, height: 20)
-                .onTapGesture { configuration.isOn.toggle() }
+                .onTapGesture {
+                    if viewModel.hasSubscription {
+                        configuration.isOn.toggle()
+                    } else {
+                        showPopup = true
+                    }
+                }
         }
         .padding()
     }

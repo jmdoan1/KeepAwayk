@@ -19,6 +19,7 @@ class ContentViewModel: ObservableObject {
     @Published var states: [String: Bool]
     @Published var isRunning = false
     @Published var interval: Int = 5
+    @Published var hasSubscription = true
     
     private var eventMonitor: EventMonitor?
     

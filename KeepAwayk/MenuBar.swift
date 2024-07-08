@@ -32,7 +32,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func applicationDidFinishLaunching(_ notification: Notification) {
-        // Create the status bar item with a fixed length
         statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         
         if let button = statusBarItem?.button {
@@ -41,6 +40,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         popover.contentViewController = NSHostingController(rootView: ContentView().frame(minHeight: 450))
+        popover.behavior = .transient
         showPopover(nil)
     }
     
