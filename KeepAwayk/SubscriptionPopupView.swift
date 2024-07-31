@@ -7,38 +7,36 @@
 
 import Foundation
 import SwiftUI
+import StoreKit
 
 struct SubscriptionPopupView: View {
     @Binding var isVisible: Bool
+    @StateObject private var iapManager = IAPManager.shared
     
     var body: some View {
         VStack {
-            Text("Subscribe to access this feature!")
+            Text("Subscribe to disable specific behaviours")
                 .font(.headline)
                 .padding()
             
-            Button(action: {
-                // Handle subscription action
-                isVisible = false
-            }) {
-                Text("Subscribe Now")
-                    .padding()
-                    .foregroundColor(.white)
-                    .font(.title2)
+            ForEach(iapManager.products, id: \.productIdentifier) { product in
+                Button("Buy \(product.localizedTitle) - \(product.priceLocale.currencySymbol!)\(product.price)") {
+                    iapManager.buyProduct(product)
+                }
             }
-            .background(Color.blue)
-            .cornerRadius(10)
             
-            Button(action: {
+            Button("Restore Purchases") {
+                iapManager.restorePurchases()
+            }.padding()
+            
+            Button("Cancel") {
                 isVisible = false
-            }) {
-                Text("Cancel")
-                    .padding()
-            }
+            }.padding()
         }
-        .frame(width: 300, height: 200)
-//        .background(Color.white)
         .cornerRadius(10)
         .shadow(radius: 10)
+        .onAppear {
+            IAPManager.shared.fetchProducts()
+        }
     }
 }

@@ -19,6 +19,9 @@
 		C1B8B9312C3BA533001F947A /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B8B9302C3BA533001F947A /* MenuBar.swift */; };
 		C1B8B9332C3BBFEE001F947A /* SubscriptionPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B8B9322C3BBFEE001F947A /* SubscriptionPopupView.swift */; };
 		C1B8B9362C3C48C8001F947A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1B8B9352C3C48C8001F947A /* StoreKit.framework */; };
+		C1B8B9382C3CDDD9001F947A /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B8B9372C3CDDD9001F947A /* IAPManager.swift */; };
+		C1B8B9392C3CDDD9001F947A /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B8B9372C3CDDD9001F947A /* IAPManager.swift */; };
+		C1B8B93A2C3CDDD9001F947A /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B8B9372C3CDDD9001F947A /* IAPManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +59,7 @@
 		C1B8B9302C3BA533001F947A /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
 		C1B8B9322C3BBFEE001F947A /* SubscriptionPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionPopupView.swift; sourceTree = "<group>"; };
 		C1B8B9352C3C48C8001F947A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		C1B8B9372C3CDDD9001F947A /* IAPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +122,7 @@
 				C1B8B92E2C3B8126001F947A /* ContentViewModel.swift */,
 				C1B8B9302C3BA533001F947A /* MenuBar.swift */,
 				C1B8B9322C3BBFEE001F947A /* SubscriptionPopupView.swift */,
+				C1B8B9372C3CDDD9001F947A /* IAPManager.swift */,
 			);
 			path = KeepAwayk;
 			sourceTree = "<group>";
@@ -285,6 +290,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1B8B9382C3CDDD9001F947A /* IAPManager.swift in Sources */,
 				C1B8B9332C3BBFEE001F947A /* SubscriptionPopupView.swift in Sources */,
 				C1B8B92F2C3B8126001F947A /* ContentViewModel.swift in Sources */,
 				C1B8B92D2C3B7F04001F947A /* EventMonitor.swift in Sources */,
@@ -298,6 +304,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1B8B9392C3CDDD9001F947A /* IAPManager.swift in Sources */,
 				C170E3352C3B323500127664 /* KeepAwaykTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -306,6 +313,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1B8B93A2C3CDDD9001F947A /* IAPManager.swift in Sources */,
 				C170E33F2C3B323500127664 /* KeepAwaykUITests.swift in Sources */,
 				C170E3412C3B323500127664 /* KeepAwaykUITestsLaunchTests.swift in Sources */,
 			);

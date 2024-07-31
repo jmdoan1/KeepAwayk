@@ -19,10 +19,9 @@ class ContentViewModel: ObservableObject {
     @Published var states: [String: Bool]
     @Published var isRunning = false
     @Published var interval: Int = 5
-    @Published var hasSubscription = true
+    @Published var hasSubscription = false
     
     private var eventMonitor: EventMonitor?
-    
     init() {
         self.states = Dictionary(uniqueKeysWithValues: options.map { ($0, true) })
         

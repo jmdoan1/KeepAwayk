@@ -45,6 +45,9 @@ struct ContentView: View {
         .onAppear {
             viewModel.start()
         }
+        .task {
+            await IAPManager.shared.checkStatus(identifier: "21508530")
+        }
         .onDisappear {
             viewModel.stop()
         }
