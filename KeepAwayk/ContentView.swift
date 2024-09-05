@@ -73,11 +73,7 @@ struct CheckboxToggleStyle: ToggleStyle {
                 .resizable()
                 .frame(width: 20, height: 20)
                 .onTapGesture {
-                    if viewModel.hasSubscription {
-                        configuration.isOn.toggle()
-                    } else {
-                        showPopup = true
-                    }
+                    configuration.isOn.toggle()
                 }
         }
         .padding()
