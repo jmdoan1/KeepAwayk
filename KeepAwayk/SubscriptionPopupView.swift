@@ -29,7 +29,7 @@ struct SubscriptionPopupView: View {
                 iapManager.restorePurchases()
             }.padding()
             
-            Button("Cancel") {
+            Button("Close") {
                 isVisible = false
             }.padding()
         }

@@ -43,13 +43,11 @@ struct ContentView: View {
         }
         .padding()
         .onAppear {
-            viewModel.start()
-        }
-        .task {
-            await IAPManager.shared.checkStatus(identifier: "21508530")
+            viewModel.startEventMonitor()
+            IAPManager.shared.fetchProducts()
         }
         .onDisappear {
-            viewModel.stop()
+            viewModel.stopEventMonitor()
         }
         .sheet(isPresented: $showPopup) {
             SubscriptionPopupView(isVisible: $showPopup)

@@ -32,17 +32,30 @@ class IAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObser
     
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         DispatchQueue.main.async {
-            self.products = response.products.sorted { $0.price.doubleValue < $1.price.doubleValue }
+            let prods = response.products.sorted { $0.price.doubleValue < $1.price.doubleValue }
+            self.products = prods
+            
+            prods.forEach { prod in
+                Task {
+                    await self.checkStatus(identifier: prod.productIdentifier)
+                }
+            }
         }
     }
     
     func checkStatus(identifier: String) async {
         do {
             let result = try await Product.SubscriptionInfo.status(for: identifier)
+            let allowableStates: [Product.SubscriptionInfo.RenewalState] = [.subscribed, .inGracePeriod, .inBillingRetryPeriod]
             for stat in result {
-                print(stat.state)
+                print("\(identifier): \(stat.state)")
+                if allowableStates.contains(where: { x in
+                    x == stat.state
+                }) {
+                    self.hasSubscription = true
+                }
             }
-            print("STATUS:", result)
+            print("\(identifier) STATUSES:", result)
         } catch {
             print("Couldn't determine subscription status")
         }

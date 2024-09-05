@@ -112,17 +112,17 @@
 		C170E3212C3B323400127664 /* KeepAwayk */ = {
 			isa = PBXGroup;
 			children = (
-				C1B8B92B2C3B618F001F947A /* Info.plist */,
-				C170E3222C3B323400127664 /* KeepAwaykApp.swift */,
-				C170E3242C3B323400127664 /* ContentView.swift */,
-				C170E3262C3B323500127664 /* Assets.xcassets */,
 				C170E32B2C3B323500127664 /* KeepAwayk.entitlements */,
-				C170E3282C3B323500127664 /* Preview Content */,
-				C1B8B92C2C3B7F04001F947A /* EventMonitor.swift */,
+				C1B8B92B2C3B618F001F947A /* Info.plist */,
+				C170E3242C3B323400127664 /* ContentView.swift */,
 				C1B8B92E2C3B8126001F947A /* ContentViewModel.swift */,
+				C1B8B92C2C3B7F04001F947A /* EventMonitor.swift */,
+				C1B8B9372C3CDDD9001F947A /* IAPManager.swift */,
+				C170E3222C3B323400127664 /* KeepAwaykApp.swift */,
 				C1B8B9302C3BA533001F947A /* MenuBar.swift */,
 				C1B8B9322C3BBFEE001F947A /* SubscriptionPopupView.swift */,
-				C1B8B9372C3CDDD9001F947A /* IAPManager.swift */,
+				C170E3262C3B323500127664 /* Assets.xcassets */,
+				C170E3282C3B323500127664 /* Preview Content */,
 			);
 			path = KeepAwayk;
 			sourceTree = "<group>";

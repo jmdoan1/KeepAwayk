@@ -32,16 +32,15 @@ class ContentViewModel: ObservableObject {
         }
     }
     
-    func start() {
+    func startEventMonitor() {
         self.eventMonitor?.start()
     }
     
-    func stop() {
+    func stopEventMonitor() {
         self.eventMonitor?.stop()
     }
     
     func toggleRunning() {
-        print("toggling")
         isRunning.toggle()
         if isRunning {
             startActions()
@@ -108,7 +107,6 @@ class ContentViewModel: ObservableObject {
     
     private func leftClick() {
         let currentLocation = getCurrentMouseLocation()
-        print("currentLocation:", currentLocation)
         
         let mouseDown = CGEvent(mouseEventSource: nil, mouseType: .leftMouseDown, mouseCursorPosition: currentLocation, mouseButton: .left)
         let mouseUp = CGEvent(mouseEventSource: nil, mouseType: .leftMouseUp, mouseCursorPosition: currentLocation, mouseButton: .left)
@@ -119,7 +117,6 @@ class ContentViewModel: ObservableObject {
     
     private func rightClick() {
         let currentLocation = getCurrentMouseLocation()
-        print("currentLocation:", currentLocation)
         
         let mouseDown = CGEvent(mouseEventSource: nil, mouseType: .rightMouseDown, mouseCursorPosition: currentLocation, mouseButton: .right)
         let mouseUp = CGEvent(mouseEventSource: nil, mouseType: .rightMouseUp, mouseCursorPosition: currentLocation, mouseButton: .right)
@@ -141,7 +138,6 @@ class ContentViewModel: ObservableObject {
         if let randomKey = keys.randomElement(), let keyCode = keyCodeMapping[randomKey] {
             let keyDown = CGEvent(keyboardEventSource: nil, virtualKey: keyCode, keyDown: true)
             let keyUp = CGEvent(keyboardEventSource: nil, virtualKey: keyCode, keyDown: false)
-            print("keyCode", keyCode, "character", randomKey)
             keyDown?.post(tap: .cghidEventTap)
             keyUp?.post(tap: .cghidEventTap)
         }
